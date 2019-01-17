@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 protocol ProductsListViewModelProtocol: class {
+    var productPack: ProductPack? { get }
+    
+    var presentProgress: ((Bool) -> Void)? { get set }
     var updateUI: (() -> Void)? { get set }
+    var showError: ((Error?) -> Void)? { get set }
     
     func loadItems()
     func itemsCount() -> Int
@@ -20,31 +24,29 @@ protocol ProductsListViewModelProtocol: class {
 
 class ProductsListViewModel: ProductsListViewModelProtocol {
     
-    var productPack: ProductPack? {
+    private(set) var productPack: ProductPack? {
         didSet {
             updateUI?()
         }
     }
     
+    var presentProgress: ((Bool) -> Void)?
     var updateUI: (() -> Void)?
+    var showError: ((Error?) -> Void)?
     
     init() {
         loadItems()
     }
     
     func loadItems() {
-        guard let url = URL(string: "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list") else { return }
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
-            guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "Response Error")
-                    return
-            }
-            let products = try! JSONDecoder().decode(ProductPack.self, from: data)
-            DispatchQueue.main.async {
-                self?.productPack = products
-            }
+        presentProgress?(true)
+        ProductService.shared.loadAllItems(succeed: { [weak self] pack in
+            self?.productPack = pack
+            self?.presentProgress?(false)
+            }, errored: { [weak self] error in
+                self?.showError?(error)
+                self?.presentProgress?(false)
         })
-        task.resume()
     }
     
     func itemsCount() -> Int {

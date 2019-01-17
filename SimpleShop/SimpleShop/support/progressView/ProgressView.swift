@@ -38,7 +38,7 @@ class ProgressView: UIView {
             alpha = 1.0
             return
         }
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 1.0
         })
     }
@@ -50,7 +50,7 @@ class ProgressView: UIView {
             isHidden = true
             return
         }
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.alpha = 0
         })
     }
