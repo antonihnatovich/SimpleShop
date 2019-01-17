@@ -12,11 +12,10 @@ import SystemConfiguration
 protocol ProductServiceProtocol: class {
     
     func loadAllItems(succeed: @escaping ((ProductPack?) -> Void), errored: @escaping((Error?) -> Void))
+    func productDetailed(for id: String, succeed: @escaping ((ProductProtocol?) -> Void), errored: @escaping((Error?) -> Void))
 }
 
 class ProductService: ProductServiceProtocol {
-    
-    
     
     static let shared = ProductService()
     
