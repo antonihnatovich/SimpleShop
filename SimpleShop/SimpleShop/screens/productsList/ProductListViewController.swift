@@ -46,7 +46,7 @@ class ProductListViewController: UIViewController {
             if let err = error as? NetworkError, err == .noInternet {
                 self?.retryButton.isHidden = false
             }
-            self?.showError(title: "Error", message: (error as? NetworkError)?.localizedDescription ?? "Unrecognized error acquired")
+            self?.showError(title: NSLocalizedString("alert.error.title", comment: ""), message: (error as? NetworkError)?.localizedDescription ?? NSLocalizedString("error.unrecognizedError", comment: ""))
         }
         
         viewModel.presentProgress = { [weak self] state in

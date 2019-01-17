@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SimpleShop
+
+  Created by Anton Ihnatovich on 1/17/19.
+  Copyright © 2019 Ihnatovich. All rights reserved.
+*/
+
+"network.error.noInternet" = "You're not connected to the internet. Please, fix that problem and try again";
+"network.error.badRequest" = "Received unexpectable response from server. Please, contact developer";
+
+"error.unrecognizedError" = "Unrecognized error acquired";
+
+"alert.error.title" = "Error";

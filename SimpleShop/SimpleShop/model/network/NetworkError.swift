@@ -15,9 +15,9 @@ enum NetworkError: Error {
     var localizedDescription: String {
         switch self {
         case .noInternet:
-            return "You're not connected to the internet. Please, fix that problem and try again"
+            return NSLocalizedString("network.error.noInternet", comment: "")
         case .badResponse:
-            return "Received unexpectable response from server. Please, contact developer"
+            return NSLocalizedString("network.error.badRequest", comment: "")
         }
     }
 }

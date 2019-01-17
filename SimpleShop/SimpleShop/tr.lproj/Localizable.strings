@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SimpleShop
+
+  Created by Anton Ihnatovich on 1/17/19.
+  Copyright © 2019 Ihnatovich. All rights reserved.
+*/
+
+"network.error.noInternet" = "İnternete bağlı değilsin. Lütfen bu sorunu düzeltip tekrar deneyin";
+"network.error.badRequest" = "Sunucudan beklenmeyen bir yanıt alındı. Lütfen geliştiriciyle iletişim kurun";
+
+"error.unrecognizedError" = "Tanınmayan hata alındı";
+
+"alert.error.title" = "Hata";
