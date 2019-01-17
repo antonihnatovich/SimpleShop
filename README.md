@@ -21,4 +21,5 @@ Brief information and features:
   - Network results caching
   - Add observer for all network request to present network indicator in more right manner
   - UI and Unit tests.
-  
+  - Ability to preview item after long touch or 3d touch on cell
+  - Sharing
