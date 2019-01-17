@@ -52,6 +52,7 @@ class ProductDetailedViewController: UIViewController {
         }
         
         viewModel.presentProgress = { [weak self] state in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = state
             if state {
                 self?.progressView.present(with: Progress.updating.rawValue, animated: true)
             } else {

@@ -15,6 +15,7 @@ class ProductListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var progressView: ProgressView!
     private(set) var viewModel: ProductsListViewModel?
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ class ProductListViewController: UIViewController {
         viewModel = ProductsListViewModel()
         bindViewModel()
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: Cell.productCell.rawValue)
+        setupCollectionViewRefreshControl()
     }
     
     override func viewWillLayoutSubviews() {
@@ -39,6 +41,7 @@ class ProductListViewController: UIViewController {
         
         viewModel.updateUI = { [weak self] in
             self?.retryButton.isHidden = true
+            self?.refreshControl.endRefreshing()
             self?.collectionView.reloadData()
         }
         
@@ -50,6 +53,7 @@ class ProductListViewController: UIViewController {
         }
         
         viewModel.presentProgress = { [weak self] state in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = state
             if state {
                 self?.progressView.present(with: Progress.updating.rawValue, animated: true)
             } else {
@@ -65,6 +69,16 @@ class ProductListViewController: UIViewController {
         }
         
         viewModel.loadItems()
+    }
+    
+    private func setupCollectionViewRefreshControl() {
+        collectionView.refreshControl = refreshControl
+        collectionView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(ProductListViewController.refreshInitiated(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshInitiated(_ sender: UIRefreshControl) {
+        viewModel?.loadItems()
     }
     
     // MARK: IBActions
