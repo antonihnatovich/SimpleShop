@@ -11,7 +11,7 @@ import UIKit
 
 class ImageService {
     
-    static let cache: NSCache = NSCache<NSString, UIImage>()
+    private static let cache: NSCache = NSCache<NSString, UIImage>()
     
     class func downloadImage(with path: String, completion: @escaping (UIImage?) -> Void) {
         guard let url = URL(string: path) else { completion(nil); return }
