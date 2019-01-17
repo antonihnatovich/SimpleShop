@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XBi-k3-KOo"/>
                                 </connections>
                             </collectionView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aym-jc-vi3" customClass="ProgressView" customModule="SimpleShop" customModuleProvider="target">
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aym-jc-vi3" customClass="ProgressView" customModule="SimpleShop" customModuleProvider="target">
                                 <rect key="frame" x="112.5" y="290.5" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -41,15 +41,25 @@
                                     <constraint firstAttribute="height" constant="150" id="N0A-zQ-GT4"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41k-7N-RyY">
+                                <rect key="frame" x="137" y="341.5" width="101" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Retry ⏎"/>
+                                <connections>
+                                    <action selector="reloadButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4zL-oK-SZ9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8aW-vE-dH8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CZh-Ch-lsy"/>
                             <constraint firstItem="Aym-jc-vi3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Cd2-PS-Tez"/>
                             <constraint firstItem="8aW-vE-dH8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JVi-O5-K3a"/>
+                            <constraint firstItem="41k-7N-RyY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="a1v-uc-f3O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8aW-vE-dH8" secondAttribute="bottom" id="dxl-Pp-T2O"/>
                             <constraint firstItem="Aym-jc-vi3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ewT-7u-V8t"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8aW-vE-dH8" secondAttribute="trailing" id="ySW-wE-ftF"/>
+                            <constraint firstItem="41k-7N-RyY" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="yru-7r-Y1e"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -57,6 +67,7 @@
                     <connections>
                         <outlet property="collectionView" destination="8aW-vE-dH8" id="iI3-Pl-t6a"/>
                         <outlet property="progressView" destination="Aym-jc-vi3" id="dYt-ZA-jkb"/>
+                        <outlet property="retryButton" destination="41k-7N-RyY" id="mhv-If-Q0s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
