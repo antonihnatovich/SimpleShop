@@ -16,6 +16,7 @@ Brief information and features:
 3. Example detailed screen:
     ![Alt text](/screenshots/detailed.png?raw=true "Detailed screen")
 4. TODO:
+  - Ability to search for concrete item
   - On-device image caching
   - Network results caching
   - Add observer for all network request to present network indicator in more right manner
