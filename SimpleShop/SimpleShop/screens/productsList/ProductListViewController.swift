@@ -49,6 +49,13 @@ class ProductListViewController: UIViewController {
                 self?.progressView.hide(animated: true)
             }
         }
+        
+        viewModel.presentDetail = { [weak self] id in
+            let storyboard = UIStoryboard.init(name: "ProductDetailed", bundle: .main)
+            guard let controller = storyboard.instantiateInitialViewController() as? ProductDetailedViewController else { return }
+            controller.productId = id
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     private class Constants {

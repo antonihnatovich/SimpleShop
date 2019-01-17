@@ -15,6 +15,7 @@ protocol ProductsListViewModelProtocol: class {
     var presentProgress: ((Bool) -> Void)? { get set }
     var updateUI: (() -> Void)? { get set }
     var showError: ((Error?) -> Void)? { get set }
+    var presentDetail: ((String) -> Void)? { get set }
     
     func loadItems()
     func itemsCount() -> Int
@@ -33,6 +34,7 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
     var presentProgress: ((Bool) -> Void)?
     var updateUI: (() -> Void)?
     var showError: ((Error?) -> Void)?
+    var presentDetail: ((String) -> Void)?
     
     init() {
         loadItems()
@@ -58,6 +60,7 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
     }
     
     func didSelectItem(at index: Int) {
-        
+        guard let id = item(at: index)?.id else { return }
+        presentDetail?(id)
     }
 }
