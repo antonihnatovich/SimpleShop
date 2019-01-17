@@ -12,27 +12,56 @@ import UIKit
 class ProductListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var progressView: ProgressView!
     private(set) var viewModel: ProductsListViewModel!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = ProductsListViewModel()
+        bindViewModel()
+        collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: Cell.productCell.rawValue)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    deinit {
+        Swift.print("[ProductListViewController] deinit")
+    }
+    
+    private func bindViewModel() {
+        
         viewModel.updateUI = { [weak self] in
             self?.collectionView.reloadData()
         }
-        collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: Constants.cellIdentifier)
+        
+        viewModel.showError = { [weak self] error in
+            self?.showError(title: "Error", message: error?.localizedDescription ?? "Unrecognized error acquired")
+        }
+        
+        viewModel.presentProgress = { [weak self] state in
+            if state {
+                self?.progressView.present(with: Progress.updating.rawValue, animated: true)
+            } else {
+                self?.progressView.hide(animated: true)
+            }
+        }
     }
     
     private class Constants {
-        static let cellPadding: CGFloat = 16
-        static let cellIdentifier = "ProductCollectionViewCell"
+        static let cellPadding: CGFloat = 10
+        static let visibleCellColumns: CGFloat = 2
+        static let visibleCellRows: CGFloat = 2.5
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension ProductListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.productCell.rawValue, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         if let item = viewModel.item(at: indexPath.row) {
             cell.update(with: item)
         }
@@ -54,7 +83,8 @@ extension ProductListViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let calculatedCellsSummaryEdgeLength = (collectionView.frame.size.width - Constants.cellPadding) / 2
-        return CGSize(width: calculatedCellsSummaryEdgeLength, height: calculatedCellsSummaryEdgeLength)
+        let calculatedWidth = (collectionView.frame.size.width - Constants.cellPadding) / Constants.visibleCellColumns
+        let calculatedHeight = (collectionView.frame.size.height - Constants.cellPadding) / Constants.visibleCellRows
+        return CGSize(width: calculatedWidth, height: calculatedHeight)
     }
 }
