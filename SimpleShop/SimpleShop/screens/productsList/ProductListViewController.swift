@@ -53,8 +53,20 @@ class ProductListViewController: UIViewController {
     
     private class Constants {
         static let cellPadding: CGFloat = 20
-        static let visibleCellColumns: CGFloat = 2
-        static let visibleCellRows: CGFloat = 2.5
+        private static let visibleCellColumnsVertical: CGFloat = 2
+        private static let visibleCellRowsVertical: CGFloat = 2.5
+        private static let visibleCellColumsHorizontal: CGFloat = 2
+        private static let visibleCellRowsHorizontal: CGFloat = 1.5
+        
+        static var cellCountPerColumn: CGFloat {
+            let isInVerticalOrientation = UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown
+            return isInVerticalOrientation ? Constants.visibleCellColumnsVertical : Constants.visibleCellColumsHorizontal
+        }
+        
+        static var cellCountPerRow: CGFloat {
+            let isInVerticalOrientation = UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown
+            return isInVerticalOrientation ? Constants.visibleCellRowsVertical : Constants.visibleCellRowsHorizontal
+        }
     }
 }
 
@@ -83,8 +95,8 @@ extension ProductListViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let calculatedWidth = (collectionView.frame.size.width - Constants.cellPadding) / Constants.visibleCellColumns
-        let calculatedHeight = (collectionView.frame.size.height - Constants.cellPadding) / Constants.visibleCellRows
+        let calculatedWidth = (collectionView.frame.size.width - Constants.cellPadding) / Constants.cellCountPerColumn
+        let calculatedHeight = (collectionView.frame.size.height - Constants.cellPadding) / Constants.cellCountPerRow
         return CGSize(width: calculatedWidth, height: calculatedHeight)
     }
 }
