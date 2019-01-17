@@ -17,6 +17,13 @@
 		166623FE21EFAE930099B3F8 /* ProductsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166623FD21EFAE930099B3F8 /* ProductsListViewModel.swift */; };
 		1666240221EFB4AF0099B3F8 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240121EFB4AF0099B3F8 /* Product.swift */; };
 		1666240421EFD0DB0099B3F8 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240321EFD0DB0099B3F8 /* ImageService.swift */; };
+		1666240621EFDBFD0099B3F8 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240521EFDBFD0099B3F8 /* ProductService.swift */; };
+		1666240821F02DCE0099B3F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240721F02DCE0099B3F8 /* Constants.swift */; };
+		1666240A21F032570099B3F8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240921F032570099B3F8 /* UIViewController+Extension.swift */; };
+		1666240D21F03A6A0099B3F8 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666240C21F03A6A0099B3F8 /* ProgressView.swift */; };
+		1666240F21F03C6E0099B3F8 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1666240E21F03C6E0099B3F8 /* ProgressView.xib */; };
+		1666241221F03D500099B3F8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666241121F03D500099B3F8 /* UIView+Extension.swift */; };
+		1666241421F041950099B3F8 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666241321F041950099B3F8 /* UIView+Shadow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		166623FD21EFAE930099B3F8 /* ProductsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewModel.swift; sourceTree = "<group>"; };
 		1666240121EFB4AF0099B3F8 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1666240321EFD0DB0099B3F8 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		1666240521EFDBFD0099B3F8 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		1666240721F02DCE0099B3F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1666240921F032570099B3F8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1666240C21F03A6A0099B3F8 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		1666240E21F03C6E0099B3F8 /* ProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
+		1666241121F03D500099B3F8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1666241321F041950099B3F8 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +78,7 @@
 		166623E321EFA7AD0099B3F8 /* SimpleShop */ = {
 			isa = PBXGroup;
 			children = (
+				1666240B21F033100099B3F8 /* support */,
 				1666240021EFAECA0099B3F8 /* model */,
 				166623FF21EFAEB90099B3F8 /* screens */,
 				166623E421EFA7AD0099B3F8 /* AppDelegate.swift */,
@@ -115,8 +130,30 @@
 			children = (
 				1666240121EFB4AF0099B3F8 /* Product.swift */,
 				1666240321EFD0DB0099B3F8 /* ImageService.swift */,
+				1666240521EFDBFD0099B3F8 /* ProductService.swift */,
+				1666240721F02DCE0099B3F8 /* Constants.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		1666240B21F033100099B3F8 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				1666241021F03CB10099B3F8 /* progressView */,
+				1666240921F032570099B3F8 /* UIViewController+Extension.swift */,
+				1666241121F03D500099B3F8 /* UIView+Extension.swift */,
+				1666241321F041950099B3F8 /* UIView+Shadow.swift */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
+		1666241021F03CB10099B3F8 /* progressView */ = {
+			isa = PBXGroup;
+			children = (
+				1666240C21F03A6A0099B3F8 /* ProgressView.swift */,
+				1666240E21F03C6E0099B3F8 /* ProgressView.xib */,
+			);
+			path = progressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +216,7 @@
 			files = (
 				166623EF21EFA7AF0099B3F8 /* LaunchScreen.storyboard in Resources */,
 				166623EC21EFA7AF0099B3F8 /* Assets.xcassets in Resources */,
+				1666240F21F03C6E0099B3F8 /* ProgressView.xib in Resources */,
 				166623F921EFAB0D0099B3F8 /* ProductCollectionViewCell.xib in Resources */,
 				166623EA21EFA7AD0099B3F8 /* ProductsList.storyboard in Resources */,
 			);
@@ -191,12 +229,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1666241221F03D500099B3F8 /* UIView+Extension.swift in Sources */,
+				1666240A21F032570099B3F8 /* UIViewController+Extension.swift in Sources */,
 				166623E721EFA7AD0099B3F8 /* ProductListViewController.swift in Sources */,
 				166623FC21EFAB320099B3F8 /* ProductCollectionViewCell.swift in Sources */,
+				1666241421F041950099B3F8 /* UIView+Shadow.swift in Sources */,
 				1666240221EFB4AF0099B3F8 /* Product.swift in Sources */,
 				166623FE21EFAE930099B3F8 /* ProductsListViewModel.swift in Sources */,
 				166623E521EFA7AD0099B3F8 /* AppDelegate.swift in Sources */,
+				1666240621EFDBFD0099B3F8 /* ProductService.swift in Sources */,
+				1666240D21F03A6A0099B3F8 /* ProgressView.swift in Sources */,
 				1666240421EFD0DB0099B3F8 /* ImageService.swift in Sources */,
+				1666240821F02DCE0099B3F8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

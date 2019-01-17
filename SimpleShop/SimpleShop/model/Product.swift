@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+struct ProductPack: Decodable {
+    var products: [Product]
+}
+
 struct Product: Decodable {
     
     enum CodingKeys: String, CodingKey {
@@ -22,8 +26,4 @@ struct Product: Decodable {
     var name: String
     var price: Double
     var image: String
-}
-
-struct ProductPack: Decodable {
-    var products: [Product]
 }
