@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol ProductsListViewModelProtocol: class {
     var productPack: ProductPack? { get }
@@ -19,7 +18,7 @@ protocol ProductsListViewModelProtocol: class {
     
     func loadItems()
     func itemsCount() -> Int
-    func item(at index: Int) -> Product?
+    func item(at index: Int) -> ProductProtocol?
     func didSelectItem(at index: Int)
 }
 
@@ -36,10 +35,6 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
     var showError: ((Error?) -> Void)?
     var presentDetail: ((String) -> Void)?
     
-    init() {
-        loadItems()
-    }
-    
     func loadItems() {
         presentProgress?(true)
         ProductService.shared.loadAllItems(succeed: { [weak self] pack in
@@ -55,7 +50,7 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
         return productPack?.products.count ?? 0
     }
     
-    func item(at index: Int) -> Product? {
+    func item(at index: Int) -> ProductProtocol? {
         return productPack?.products[index]
     }
     

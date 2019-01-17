@@ -11,9 +11,10 @@ import UIKit
 
 class ProductListViewController: UIViewController {
     
+    @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var progressView: ProgressView!
-    private(set) var viewModel: ProductsListViewModel!
+    private(set) var viewModel: ProductsListViewModel?
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -34,12 +35,18 @@ class ProductListViewController: UIViewController {
     
     private func bindViewModel() {
         
+        guard let viewModel = viewModel else { return }
+        
         viewModel.updateUI = { [weak self] in
+            self?.retryButton.isHidden = true
             self?.collectionView.reloadData()
         }
         
         viewModel.showError = { [weak self] error in
-            self?.showError(title: "Error", message: error?.localizedDescription ?? "Unrecognized error acquired")
+            if let err = error as? NetworkError, err == .noInternet {
+                self?.retryButton.isHidden = false
+            }
+            self?.showError(title: "Error", message: (error as? NetworkError)?.localizedDescription ?? "Unrecognized error acquired")
         }
         
         viewModel.presentProgress = { [weak self] state in
@@ -56,6 +63,13 @@ class ProductListViewController: UIViewController {
             controller.productId = id
             self?.navigationController?.pushViewController(controller, animated: true)
         }
+        
+        viewModel.loadItems()
+    }
+    
+    // MARK: IBActions
+    @IBAction func reloadButtonDidPress(_ sender: UIButton) {
+        viewModel?.loadItems()
     }
     
     private class Constants {
@@ -81,21 +95,21 @@ class ProductListViewController: UIViewController {
 extension ProductListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.productCell.rawValue, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
-        if let item = viewModel.item(at: indexPath.row) {
+        if let item = viewModel?.item(at: indexPath.row) {
             cell.update(with: item)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemsCount()
+        return viewModel?.itemsCount() ?? 0
     }
 }
 
 // MARK: UICollectionViewDelegate
 extension ProductListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectItem(at: indexPath.row)
+        viewModel?.didSelectItem(at: indexPath.row)
     }
 }
 
