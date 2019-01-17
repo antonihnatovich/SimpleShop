@@ -23,3 +23,6 @@ Brief information and features:
   - UI and Unit tests.
   - Ability to preview item after long touch or 3d touch on cell
   - Sharing
+  - Add a swiftlint\swiftject to project
+  - Shopping card imitation
+  - Add favorite status to item
