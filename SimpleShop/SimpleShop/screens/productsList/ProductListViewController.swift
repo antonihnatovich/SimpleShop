@@ -52,7 +52,7 @@ class ProductListViewController: UIViewController {
     }
     
     private class Constants {
-        static let cellPadding: CGFloat = 10
+        static let cellPadding: CGFloat = 20
         static let visibleCellColumns: CGFloat = 2
         static let visibleCellRows: CGFloat = 2.5
     }
