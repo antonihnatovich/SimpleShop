@@ -25,7 +25,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func update(with product: ProductProtocol) {
-        ImageService.requestImage(with: product.image, completion: { [weak self] image in
+        ImageService.shared.requestImage(with: product.image, completion: { [weak self] image in
             self?.productImageView.image = image
         })
         productNameLabel.text = product.name

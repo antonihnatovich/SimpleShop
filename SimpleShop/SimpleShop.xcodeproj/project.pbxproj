@@ -30,6 +30,7 @@
 		1666242421F05FB80099B3F8 /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666242321F05FB80099B3F8 /* NetworkChecker.swift */; };
 		1666242621F0600F0099B3F8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666242521F0600F0099B3F8 /* NetworkError.swift */; };
 		1666242921F066EF0099B3F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1666242B21F066EF0099B3F8 /* Localizable.strings */; };
+		16F49DFF2205C83C00415457 /* DeviceCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F49DFE2205C83C00415457 /* DeviceCacheService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		1666242C21F0686A0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProductsList.strings; sourceTree = "<group>"; };
 		1666242D21F0686A0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1666242E21F0686B0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		16F49DFE2205C83C00415457 /* DeviceCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCacheService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				1666240521EFDBFD0099B3F8 /* ProductService.swift */,
 				1666242321F05FB80099B3F8 /* NetworkChecker.swift */,
 				1666242521F0600F0099B3F8 /* NetworkError.swift */,
+				16F49DFE2205C83C00415457 /* DeviceCacheService.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				1666241A21F0550D0099B3F8 /* ProductDetailedViewModel.swift in Sources */,
 				1666240D21F03A6A0099B3F8 /* ProgressView.swift in Sources */,
 				1666240421EFD0DB0099B3F8 /* ImageService.swift in Sources */,
+				16F49DFF2205C83C00415457 /* DeviceCacheService.swift in Sources */,
 				1666240821F02DCE0099B3F8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

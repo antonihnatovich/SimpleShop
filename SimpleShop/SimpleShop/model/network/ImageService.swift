@@ -9,14 +9,23 @@
 import Foundation
 import UIKit
 
-class ImageService {
+protocol ImageServiceProtocol: class {
     
-    private static let cache: NSCache = NSCache<NSString, UIImage>()
+    func downloadImage(with url: URL, completion: @escaping (UIImage?) -> Void)
+    func requestImage(with path: String, completion: @escaping (UIImage?) -> Void)
+}
+
+class ImageService: ImageServiceProtocol {
     
-    class func downloadImage(with path: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: path) else { completion(nil); return }
+    private let cache: NSCache = NSCache<NSString, UIImage>()
+    private let deviceCacheService = DeviceCacheService.shared
+    
+    static let shared = ImageService()
+    private init() {}
+    
+    func downloadImage(with url: URL, completion: @escaping (UIImage?) -> Void) {
         
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             var image: UIImage?
             
             if let data = data {
@@ -24,7 +33,7 @@ class ImageService {
             }
             
             if let image = image {
-                cache.setObject(image, forKey: NSString(string: url.absoluteString))
+                self?.saveImageToCache(with: url, and: image)
             }
             
             DispatchQueue.main.async {
@@ -34,11 +43,30 @@ class ImageService {
         task.resume()
     }
     
-    class func requestImage(with path: String, completion: @escaping (UIImage?) -> Void) {
-        if let image = cache.object(forKey: NSString(string: path)) {
+    func requestImage(with path: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: path) else { completion(nil); return }
+        
+        if let image = retrieveImageFromCache(with: url) {
             completion(image)
         } else {
-            downloadImage(with: path, completion: completion)
+            downloadImage(with: url, completion: completion)
         }
+    }
+}
+
+// MARK: ImageServiceCaching
+extension ImageService {
+    
+    private func saveImageToCache(with url: URL, and image: UIImage) {
+        cache.setObject(image, forKey: NSString(string: url.absoluteString))
+        deviceCacheService.saveImageOnDevice(with: url, image: image)
+    }
+    
+    private func retrieveImageFromCache(with path: URL) -> UIImage? {
+        if let image = cache.object(forKey: NSString(string: path.absoluteString)) {
+            return image
+        }
+        let imageFromLocalStore = deviceCacheService.imageFromDevice(imageURL: path)
+        return imageFromLocalStore
     }
 }
