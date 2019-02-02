@@ -11,8 +11,8 @@ import UIKit
 
 protocol ImageServiceProtocol: class {
     
-    func downloadImage(with url: URL, completion: @escaping (UIImage?) -> Void)
-    func requestImage(with path: String, completion: @escaping (UIImage?) -> Void)
+    func downloadImage(with url: URL, completion: @escaping (String, UIImage?) -> Void)
+    func requestImage(with path: String, completion: @escaping (String, UIImage?) -> Void)
 }
 
 class ImageService: ImageServiceProtocol {
@@ -23,7 +23,7 @@ class ImageService: ImageServiceProtocol {
     static let shared = ImageService()
     private init() {}
     
-    func downloadImage(with url: URL, completion: @escaping (UIImage?) -> Void) {
+    func downloadImage(with url: URL, completion: @escaping (String, UIImage?) -> Void) {
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             var image: UIImage?
@@ -37,17 +37,17 @@ class ImageService: ImageServiceProtocol {
             }
             
             DispatchQueue.main.async {
-                completion(image)
+                completion(url.absoluteString, image)
             }
         })
         task.resume()
     }
     
-    func requestImage(with path: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: path) else { completion(nil); return }
+    func requestImage(with path: String, completion: @escaping (String, UIImage?) -> Void) {
+        guard let url = URL(string: path) else { completion(path, nil); return }
         
         if let image = retrieveImageFromCache(with: url) {
-            completion(image)
+            completion(path, image)
         } else {
             downloadImage(with: url, completion: completion)
         }
@@ -66,7 +66,10 @@ extension ImageService {
         if let image = cache.object(forKey: NSString(string: path.absoluteString)) {
             return image
         }
-        let imageFromLocalStore = deviceCacheService.imageFromDevice(imageURL: path)
-        return imageFromLocalStore
+        if let imageFromLocalStore = deviceCacheService.imageFromDevice(imageURL: path) {
+            cache.setObject(imageFromLocalStore, forKey: NSString(string: path.absoluteString))
+            return imageFromLocalStore
+        }
+        return nil
     }
 }

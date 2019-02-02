@@ -25,11 +25,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func update(with product: ProductProtocol) {
-        ImageService.shared.requestImage(with: product.image, completion: { [weak self] image in
-            self?.productImageView.image = image
+        currentItem = product
+        ImageService.shared.requestImage(with: product.image, completion: { [weak self] path, image in
+            guard let item = self?.currentItem else { return }
+            if path.elementsEqual(item.image) {
+                self?.productImageView.image = image
+            }
         })
         productNameLabel.text = product.name
         productPriceLabel.text = "\(product.price)"
-        currentItem = product
     }
 }

@@ -71,7 +71,7 @@ class ProductDetailedViewController: UIViewController {
             return
         }
         
-        ImageService.shared.requestImage(with: product.image, completion: { [weak self] image in
+        ImageService.shared.requestImage(with: product.image, completion: { [weak self] _, image in
             self?.productImageView.image = image
         })
         productTitleLabel.text = product.name
