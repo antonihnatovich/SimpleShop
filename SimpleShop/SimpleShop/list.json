@@ -1,5 +1,4 @@
-{
-  "products" : [
+[
      {
         "product_id" : "1",
         "name" : "Apples",
@@ -73,4 +72,3 @@
         "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/12.jpg?raw=true"
      }
   ]
-}
