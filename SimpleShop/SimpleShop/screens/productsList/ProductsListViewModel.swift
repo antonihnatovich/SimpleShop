@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProductsListViewModelProtocol: class {
-    var productPack: ProductPack? { get }
+    var productPack: [Product]? { get }
     
     var presentProgress: ((Bool) -> Void)? { get set }
     var updateUI: (() -> Void)? { get set }
@@ -18,13 +18,13 @@ protocol ProductsListViewModelProtocol: class {
     
     func loadItems()
     func itemsCount() -> Int
-    func item(at index: Int) -> ProductProtocol?
+    func item(at index: Int) -> Product?
     func didSelectItem(at index: Int)
 }
 
 class ProductsListViewModel: ProductsListViewModelProtocol {
     
-    private(set) var productPack: ProductPack? {
+    private(set) var productPack: [Product]? {
         didSet {
             updateUI?()
         }
@@ -47,11 +47,11 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
     }
     
     func itemsCount() -> Int {
-        return productPack?.products.count ?? 0
+        return productPack?.count ?? 0
     }
     
-    func item(at index: Int) -> ProductProtocol? {
-        return productPack?.products[index]
+    func item(at index: Int) -> Product? {
+        return productPack?[index]
     }
     
     func didSelectItem(at index: Int) {

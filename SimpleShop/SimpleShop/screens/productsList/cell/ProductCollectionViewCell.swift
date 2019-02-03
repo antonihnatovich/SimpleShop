@@ -14,7 +14,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     
-    private(set) var currentItem: ProductProtocol?
+    private(set) var currentItem: Product?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -24,7 +24,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         currentItem = nil
     }
     
-    func update(with product: ProductProtocol) {
+    func update(with product: Product) {
         currentItem = product
         ImageService.shared.requestImage(with: product.image, completion: { [weak self] path, image in
             guard let item = self?.currentItem else { return }

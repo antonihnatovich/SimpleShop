@@ -9,9 +9,9 @@
 import Foundation
 
 protocol ProductDetailedViewModelProtocol: class {
-    var product: ProductProtocol? { get }
+    var product: Product? { get }
     
-    var updateUI: ((ProductProtocol?) -> Void)? { get set }
+    var updateUI: ((Product?) -> Void)? { get set }
     var showError: ((Error?) -> Void)? { get set }
     var presentProgress: ((Bool) -> Void)? { get set }
     
@@ -20,7 +20,7 @@ protocol ProductDetailedViewModelProtocol: class {
 
 class ProductDetailedViewModel: ProductDetailedViewModelProtocol {
     
-    private(set) var product: ProductProtocol? {
+    private(set) var product: Product? {
         didSet {
             updateUI?(product)
         }
@@ -28,7 +28,7 @@ class ProductDetailedViewModel: ProductDetailedViewModelProtocol {
     
     private var id: String
     
-    var updateUI: ((ProductProtocol?) -> Void)?
+    var updateUI: ((Product?) -> Void)?
     var showError: ((Error?) -> Void)?
     var presentProgress: ((Bool) -> Void)?
     

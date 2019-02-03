@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 protocol ImageServiceProtocol: class {
+    typealias RequestedImage = (String, UIImage?) -> Void
     
-    func downloadImage(with url: URL, completion: @escaping (String, UIImage?) -> Void)
-    func requestImage(with path: String, completion: @escaping (String, UIImage?) -> Void)
+    func downloadImage(with url: URL, completion: @escaping RequestedImage)
+    func requestImage(with path: String, completion: @escaping RequestedImage)
 }
 
 class ImageService: ImageServiceProtocol {
@@ -23,7 +24,7 @@ class ImageService: ImageServiceProtocol {
     static let shared = ImageService()
     private init() {}
     
-    func downloadImage(with url: URL, completion: @escaping (String, UIImage?) -> Void) {
+    func downloadImage(with url: URL, completion: @escaping RequestedImage) {
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             var image: UIImage?
@@ -43,7 +44,7 @@ class ImageService: ImageServiceProtocol {
         task.resume()
     }
     
-    func requestImage(with path: String, completion: @escaping (String, UIImage?) -> Void) {
+    func requestImage(with path: String, completion: @escaping RequestedImage) {
         guard let url = URL(string: path) else { completion(path, nil); return }
         
         if let image = retrieveImageFromCache(with: url) {

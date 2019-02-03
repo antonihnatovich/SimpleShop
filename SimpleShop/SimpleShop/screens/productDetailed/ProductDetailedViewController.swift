@@ -62,7 +62,7 @@ class ProductDetailedViewController: UIViewController {
         viewModel.getDetailedItem()
     }
     
-    private func updateUI(with product: ProductProtocol?) {
+    private func updateUI(with product: Product?) {
         guard let product = product else {
             productImageView.image = nil
             productDescriptionLabel.text = nil
@@ -75,7 +75,7 @@ class ProductDetailedViewController: UIViewController {
             self?.productImageView.image = image
         })
         productTitleLabel.text = product.name
-        productDescriptionLabel.text = product.description
+        productDescriptionLabel.text = product.descr
         title = product.name
     }
     

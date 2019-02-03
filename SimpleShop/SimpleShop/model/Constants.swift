@@ -24,9 +24,9 @@ enum Endpoint {
     var path: String {
         switch self {
         case .base:
-            return "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/"
+            return "https://raw.githubusercontent.com/chacha1337/SimpleShop/master/SimpleShop/SimpleShop/"
         case .listPart:
-            return Endpoint.base.path + "list"
+            return Endpoint.base.path + "list.json"
         case .detailPart(let id):
             return Endpoint.base.path + "\(id)/detail"
         }

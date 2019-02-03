@@ -8,25 +8,31 @@
 
 import Foundation
 import SystemConfiguration
+import CoreData
 
 protocol ProductServiceProtocol: class {
+    typealias ServiceError = ((Error?) -> Void)
     
-    func loadAllItems(succeed: @escaping ((ProductPack?) -> Void), errored: @escaping((Error?) -> Void))
+    func loadAllItems(succeed: @escaping (([Product]?) -> Void), errored: @escaping ServiceError)
+    func productDetailed(for id: String, succeed: @escaping ((Product?) -> Void), errored: @escaping ServiceError)
 }
 
 class ProductService: ProductServiceProtocol {
-    
-    
-    
+
     static let shared = ProductService()
+    private lazy var coreDataHelper: CoreDataHelper = {
+        return CoreDataHelper.shared
+    }()
+    private init() {}
     
-     func loadAllItems(succeed: @escaping ((ProductPack?) -> Void), errored: @escaping((Error?) -> Void)) {
+     func loadAllItems(succeed: @escaping (([Product]?) -> Void), errored: @escaping ServiceError) {
         guard let url = Endpoint.listPart.url else { return }
         guard NetworkChecker.isNetworkReachable() else {
+            succeed(coreDataHelper.fetchAllProducts())
             errored(NetworkError.noInternet)
             return
         }
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
                     errored(NetworkError.badResponse)
@@ -35,39 +41,54 @@ class ProductService: ProductServiceProtocol {
             }
             
             do {
-                let productsPack: ProductPack? = try JSONDecoder().decode(ProductPack.self, from: data)
+                let context = self?.coreDataHelper.persistantContainer.viewContext
+                let decoder = JSONDecoder()
+                decoder.userInfo[CodingUserInfoKey.context!] = context
+                _ = try decoder.decode([Product].self, from: data)
+                context?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                try? context?.save()
                 DispatchQueue.main.async {
-                    succeed(productsPack)
+                    succeed(self?.coreDataHelper.fetchAllProducts())
                 }
             } catch {
-                errored(NetworkError.badResponse)
+                DispatchQueue.main.async {
+                    errored(NetworkError.badResponse)
+                }
             }
         })
         task.resume()
     }
     
-    func productDetailed(for id: String, succeed: @escaping ((ProductProtocol?) -> Void), errored: @escaping((Error?) -> Void)) {
+    func productDetailed(for id: String, succeed: @escaping ((Product?) -> Void), errored: @escaping ServiceError) {
         guard let url = Endpoint.detailPart(id).url else { return }
         guard NetworkChecker.isNetworkReachable() else {
             errored(NetworkError.noInternet)
             return
         }
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
+                    succeed(self?.coreDataHelper.concreteProduct(with: id))
                     errored(NetworkError.badResponse)
                 }
                 return
             }
             
             do {
-                let products: ProductProtocol? = try JSONDecoder().decode(Product.self, from: data)
+                let context = self?.coreDataHelper.persistantContainer.viewContext
+                let decoder = JSONDecoder()
+                decoder.userInfo[CodingUserInfoKey.context!] = context
+                _ = try decoder.decode(Product.self, from: data)
+                try? context?.save()
                 DispatchQueue.main.async {
-                    succeed(products)
+                    succeed(self?.coreDataHelper.concreteProduct(with: id))
                 }
             } catch let decodingError {
                 Swift.print(decodingError.localizedDescription)
-                errored(NetworkError.badResponse)
+                DispatchQueue.main.async {
+                    succeed(self?.coreDataHelper.concreteProduct(with: id))
+                    errored(NetworkError.badResponse)
+                }
             }
         })
         task.resume()

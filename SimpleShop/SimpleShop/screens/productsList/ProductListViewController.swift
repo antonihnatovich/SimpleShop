@@ -94,12 +94,16 @@ class ProductListViewController: UIViewController {
         private static let visibleCellRowsHorizontal: CGFloat = 1.5
         
         static var cellCountPerColumn: CGFloat {
-            let isInVerticalOrientation = UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown
+            let isInVerticalOrientation = UIDevice.current.orientation == .portrait
+                || UIDevice.current.orientation == .portraitUpsideDown
+                || UIDevice.current.orientation.rawValue == 0
             return isInVerticalOrientation ? Constants.visibleCellColumnsVertical : Constants.visibleCellColumsHorizontal
         }
         
         static var cellCountPerRow: CGFloat {
-            let isInVerticalOrientation = UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown
+            let isInVerticalOrientation = UIDevice.current.orientation == .portrait
+                || UIDevice.current.orientation == .portraitUpsideDown
+                || UIDevice.current.orientation.rawValue == 0
             return isInVerticalOrientation ? Constants.visibleCellRowsVertical : Constants.visibleCellRowsHorizontal
         }
     }
