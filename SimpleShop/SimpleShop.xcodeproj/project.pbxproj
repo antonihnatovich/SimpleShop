@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160232B72206A63C007F8D35 /* SimpleShop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 160232B42206A55F007F8D35 /* SimpleShop.xcdatamodeld */; };
+		160232B92206CE47007F8D35 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160232B82206CE47007F8D35 /* Codable+Extension.swift */; };
 		166623E521EFA7AD0099B3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166623E421EFA7AD0099B3F8 /* AppDelegate.swift */; };
 		166623E721EFA7AD0099B3F8 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166623E621EFA7AD0099B3F8 /* ProductListViewController.swift */; };
 		166623EA21EFA7AD0099B3F8 /* ProductsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 166623E821EFA7AD0099B3F8 /* ProductsList.storyboard */; };
@@ -30,10 +32,13 @@
 		1666242421F05FB80099B3F8 /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666242321F05FB80099B3F8 /* NetworkChecker.swift */; };
 		1666242621F0600F0099B3F8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666242521F0600F0099B3F8 /* NetworkError.swift */; };
 		1666242921F066EF0099B3F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1666242B21F066EF0099B3F8 /* Localizable.strings */; };
+		169033F522073E700060E121 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169033F422073E700060E121 /* CoreDataHelper.swift */; };
 		16F49DFF2205C83C00415457 /* DeviceCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F49DFE2205C83C00415457 /* DeviceCacheService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160232B52206A55F007F8D35 /* SimpleShop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleShop.xcdatamodel; sourceTree = "<group>"; };
+		160232B82206CE47007F8D35 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		166623E121EFA7AD0099B3F8 /* SimpleShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		166623E421EFA7AD0099B3F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		166623E621EFA7AD0099B3F8 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +67,7 @@
 		1666242C21F0686A0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProductsList.strings; sourceTree = "<group>"; };
 		1666242D21F0686A0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1666242E21F0686B0099B3F8 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		169033F422073E700060E121 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		16F49DFE2205C83C00415457 /* DeviceCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCacheService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +109,7 @@
 				166623ED21EFA7AF0099B3F8 /* LaunchScreen.storyboard */,
 				166623F021EFA7AF0099B3F8 /* Info.plist */,
 				1666242B21F066EF0099B3F8 /* Localizable.strings */,
+				160232B42206A55F007F8D35 /* SimpleShop.xcdatamodeld */,
 			);
 			path = SimpleShop;
 			sourceTree = "<group>";
@@ -149,6 +156,7 @@
 		1666240021EFAECA0099B3F8 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				169033F622073E790060E121 /* coredata */,
 				1666241B21F05E990099B3F8 /* network */,
 				1666240121EFB4AF0099B3F8 /* Product.swift */,
 				1666240721F02DCE0099B3F8 /* Constants.swift */,
@@ -192,8 +200,17 @@
 				1666241E21F05F360099B3F8 /* UIView+Extension.swift */,
 				1666241F21F05F360099B3F8 /* UIView+Shadow.swift */,
 				1666241D21F05F360099B3F8 /* UIViewController+Extension.swift */,
+				160232B82206CE47007F8D35 /* Codable+Extension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		169033F622073E790060E121 /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				169033F422073E700060E121 /* CoreDataHelper.swift */,
+			);
+			path = coredata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,12 +292,14 @@
 				1666242121F05F360099B3F8 /* UIView+Extension.swift in Sources */,
 				1666242621F0600F0099B3F8 /* NetworkError.swift in Sources */,
 				166623E721EFA7AD0099B3F8 /* ProductListViewController.swift in Sources */,
+				160232B92206CE47007F8D35 /* Codable+Extension.swift in Sources */,
 				1666242421F05FB80099B3F8 /* NetworkChecker.swift in Sources */,
 				1666242021F05F360099B3F8 /* UIViewController+Extension.swift in Sources */,
 				166623FC21EFAB320099B3F8 /* ProductCollectionViewCell.swift in Sources */,
 				1666240221EFB4AF0099B3F8 /* Product.swift in Sources */,
 				1666241821F050070099B3F8 /* ProductDetailedViewController.swift in Sources */,
 				166623FE21EFAE930099B3F8 /* ProductsListViewModel.swift in Sources */,
+				169033F522073E700060E121 /* CoreDataHelper.swift in Sources */,
 				1666242221F05F360099B3F8 /* UIView+Shadow.swift in Sources */,
 				166623E521EFA7AD0099B3F8 /* AppDelegate.swift in Sources */,
 				1666240621EFDBFD0099B3F8 /* ProductService.swift in Sources */,
@@ -289,6 +308,7 @@
 				1666240421EFD0DB0099B3F8 /* ImageService.swift in Sources */,
 				16F49DFF2205C83C00415457 /* DeviceCacheService.swift in Sources */,
 				1666240821F02DCE0099B3F8 /* Constants.swift in Sources */,
+				160232B72206A63C007F8D35 /* SimpleShop.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +519,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		160232B42206A55F007F8D35 /* SimpleShop.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				160232B52206A55F007F8D35 /* SimpleShop.xcdatamodel */,
+			);
+			currentVersion = 160232B52206A55F007F8D35 /* SimpleShop.xcdatamodel */;
+			path = SimpleShop.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 166623D921EFA7AD0099B3F8 /* Project object */;
 }

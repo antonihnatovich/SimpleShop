@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blue]
@@ -22,7 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupCacheDirectory()
         return true
     }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        try! CoreDataHelper.shared.persistantContainer.viewContext.save()
+    }
+}
 
+// MARK: Caching
+extension AppDelegate {
+    
     private func setupCacheDirectory() {
         guard var directoryPath = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
             Swift.print("[ImageService] failed to retrieve url for cache directory")
