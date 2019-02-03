@@ -63,12 +63,12 @@
         "product_id" : "11",
         "name" : "Bacon",
         "price" : 212,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/11.jpg?raw=true"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/11.png?raw=true"
      },
      {
         "product_id" : "12",
         "name" : "Peppers",
         "price" : 9,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/12.jpg?raw=true"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/12.png?raw=true"
      }
   ]
