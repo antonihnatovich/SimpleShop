@@ -4,73 +4,73 @@
         "product_id" : "1",
         "name" : "Apples",
         "price" : 120,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/1.png"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/1.png?raw=true"
      },
      {
         "product_id" : "2",
         "name" : "Oranges",
         "price" : 167,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/2.png"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/2.png?raw=true"
      },
      {
         "product_id" : "3",
         "name" : "Bananas",
         "price" : 88,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/3.png"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/3.png?raw=true"
      },
      {
         "product_id" : "4",
         "name" : "Onions",
         "price" : 110,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/4.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/4.jpg?raw=true"
      },
      {
         "product_id" : "5",
         "name" : "Steak",
         "price" : 543,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/5.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/5.jpg?raw=true"
      },
      {
         "product_id" : "6_id_is_a_string",
         "name" : "Pork",
         "price" : 343,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/6.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/6.jpg?raw=true"
      },
      {
         "product_id" : "7",
         "name" : "Chicken",
         "price" : 272,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/chicken.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/chicken.jpg?raw=true"
      },
      {
         "product_id" : "8",
         "name" : "Salmon",
         "price" : 267,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/8.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/8.jpg?raw=true"
      },
      {
         "product_id" : "9",
         "name" : "Tuna",
         "price" : 557,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/9.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/9.jpg?raw=true"
      },
      {
         "product_id" : "10",
         "name" : "Broccoli",
         "price" : 32,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/10.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/10.jpg?raw=true"
      },
      {
         "product_id" : "11",
         "name" : "Bacon",
         "price" : 212,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/11.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/11.jpg?raw=true"
      },
      {
         "product_id" : "12",
         "name" : "Peppers",
         "price" : 9,
-        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/12.jpg"
+        "image" : "https://github.com/chacha1337/SimpleShop/blob/master/SimpleShop/SimpleShop/remoteImages/12.jpg?raw=true"
      }
   ]
 }
